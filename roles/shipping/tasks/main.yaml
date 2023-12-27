@@ -18,6 +18,11 @@
   args:
     chdir: /app
 
+- name: install mysql
+  ansible.builtin.dnf:
+    name: mysql
+    state: present
+
 - name: check cities schema exists or not
   ansible.builtin.command: mysql -h mysql.roboshopapp.website -uroot -p{{mysql_password}} -sN -e "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'cities'"
   register: schema
