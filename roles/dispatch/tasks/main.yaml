@@ -2,6 +2,7 @@
   ansible.builtin.package:
     name: golang
     state: present
+
 - name: app setup
   ansible.builtin.import_role:
     name: common
