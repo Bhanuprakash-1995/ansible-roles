@@ -8,12 +8,12 @@
     name: mongodb-org-shell
     state: present
 
-- name: "get the {{component}} count"
+- name: "get the product count"
   ansible.builtin.command: mongo --host mongodb.roboshopapp.website --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
   register: product_count
   when: component =="catalogue"
 
-- name: "get the {{component}} count"
+- name: "get the users count"
   ansible.builtin.command: mongo --host mongodb.roboshopapp.website --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
   register: users_count
   when: component =="user"
@@ -21,7 +21,8 @@
 - name: "load catalogue data"
   ansible.builtin.command: "mongo --host mongodb.roboshopapp.website < /app/schema/{{component}}.js"
   when: product_count.stdout == "0" and component == "catalogue"
-
+  ignore_error: true
 - name: "load user data"
   ansible.builtin.command: "mongo --host mongodb.roboshopapp.website < /app/schema/{{component}}.js"
   when: users_count.stdout == "0" and component == "user"
+  ignore_error: true
