@@ -18,10 +18,10 @@
   register: users_count
   when: component =="user"
 
-- name: "load {{component}} data"
+- name: "load catalogue data"
   ansible.builtin.command: "mongo --host mongodb.roboshopapp.website < /app/schema/{{component}}.js"
   when: product_count.stdout == "0" and component == "catalogue"
 
-- name: "load {{component}} data"
+- name: "load user data"
   ansible.builtin.command: "mongo --host mongodb.roboshopapp.website < /app/schema/{{component}}.js"
   when: users_count.stdout == "0" and component == "user"
