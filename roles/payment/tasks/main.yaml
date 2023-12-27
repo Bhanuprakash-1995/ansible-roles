@@ -15,7 +15,7 @@
 - name: Install dependencies
   ansible.builtin.command: pip3.6 install -r requirements.txt
   args:
-    chdir: /apps
+    chdir: /app
 
 - name: app setup
   ansible.builtin.import_role:
