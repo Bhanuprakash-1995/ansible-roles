@@ -1,39 +1,17 @@
-- name: install maven
-  ansible.builtin.dnf:
-    name: maven
-    state: present
-
 - name: app setup
   ansible.builtin.import_role:
     name: common
     tasks_from: app-setup
 
-- name: install dependencies
-  ansible.builtin.command: mvn clean package
-  args:
-    chdir: /app
+- name: java setup
+  ansible.legacy.import_role:
+    name: common
+    tasks_from: java-setup
 
-- name: move shipping jar file
-  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
-  args:
-    chdir: /app
-
-- name: install mysql
-  ansible.builtin.dnf:
-    name: mysql
-    state: present
-
-- name: check cities schema exists or not
-  ansible.builtin.command: mysql -h mysql.roboshopapp.website -uroot -p{{mysql_password}} -sN -e "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'cities'"
-  register: schema
-
-- name: print output
-  ansible.builtin.debug:
-    msg: "schema output: {{schema}}"
-
-- name: load cities data
-  ansible.builtin.shell: "mysql -h mysql.roboshopapp.website -uroot -p{{mysql_password}}  < /app/schema/shipping.sql"
-  when: schema.stdout != "1"
+- name: mysql setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: mysql-setup
 
 - name: app setup
   ansible.builtin.import_role:
