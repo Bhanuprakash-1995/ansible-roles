@@ -13,7 +13,20 @@
     path: /usr/share/nginx/html
     state: directory
 
-- name: nginx application setup
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: nginx-app-setup
+- name: Download web app
+  ansible.builtin.get_url:
+    url: "https://roboshop-builds.s3.amazonaws.com/{{component}}.zip"
+    dest: /tmp
+
+- name: Extract application
+  ansible.builtin.unarchive:
+    src: "/tmp/{{component}}.zip"
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
+- name: copy roboshop configuration
+  ansible.builtin.copy:
+    src: roboshop.conf.j2
+    dest: /etc/nginx/default.d/roboshop.conf
+  notify:
+    - Restart nginx
