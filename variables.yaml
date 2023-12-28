@@ -1,2 +1,9 @@
 CATALOGUE_HOST: catalogue.roboshopapp.website
 MONGODB_HOST: mmongodb.roboshopapp.website
+REDIS_HOST: redis.roboshopapp.website
+USER_HOST: user.roboshopapp.website
+CART_HOST: cart.roboshopapp.website
+MYSQL_HOST: mysql.roboshopapp.website
+PAYMENT_HOST: payment.roboshopapp.website
+RABBITMQ_HOST: rabbitmq.roboshopapp.website
+DISPATCH_HOST: dispatch.roboshopapp.website
