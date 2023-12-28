@@ -7,3 +7,4 @@ MYSQL_HOST: mysql.roboshopapp.website
 PAYMENT_HOST: payment.roboshopapp.website
 RABBITMQ_HOST: rabbitmq.roboshopapp.website
 DISPATCH_HOST: dispatch.roboshopapp.website
+SHIPPING_HOST: shipping.roboshopapp.website
