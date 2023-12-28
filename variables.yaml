@@ -1,5 +1,5 @@
 CATALOGUE_HOST: catalogue.roboshopapp.website
-MONGODB_HOST: mmongodb.roboshopapp.website
+MONGODB_HOST: mongodb.roboshopapp.website
 REDIS_HOST: redis.roboshopapp.website
 USER_HOST: user.roboshopapp.website
 CART_HOST: cart.roboshopapp.website
