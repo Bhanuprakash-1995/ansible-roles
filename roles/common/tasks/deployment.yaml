@@ -19,7 +19,7 @@
     path: /app
     state: directory
 
-- name: download to application
+- name: "download {{component}} application"
   tags:
     - deployment
   ansible.builtin.get_url:
